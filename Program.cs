@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Xml;
 
 namespace Application
 {
@@ -60,11 +61,23 @@ namespace Application
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
-    
             Random rand = new Random();
+            int answer = rand.Next(0, 1000);
 
-            for(int i = 0; i < 100; i++)
-                OutputNumber(rand.Next(0, 1000));  
+            while(true)
+            {
+                Console.WriteLine();
+                answer = rand.Next(0, 1000);
+                OutputNumber(answer);
+                int guess = Convert.ToInt32(Console.ReadLine());
+                if (guess == answer)
+                    Console.WriteLine("Correct");
+                else
+                    Console.WriteLine("WRONG - " + answer);
+            }
+
+            //for(int i = 0; i < 100; i++)
+                //OutputNumber(rand.Next(0, 1000));  
                 
             //for(int i = 0; i < 1000; i++)
                 //OutputNumber(i);  
@@ -72,8 +85,6 @@ namespace Application
         
         static void OutputNumber(int number)
         {
-            Console.Write(number + "\t");
-
             if (number < 20)
             {
                 Console.WriteLine(last[number] + " ");
